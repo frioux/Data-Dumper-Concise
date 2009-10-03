@@ -1,0 +1,4 @@
+1.000 Oct 3 2009
+  - Dumper() returns concise Data::Dumper object
+  - Dumper($ref) returns concisely dumped ref
+  - anything else die()s
