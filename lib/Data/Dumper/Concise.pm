@@ -95,12 +95,35 @@ It exists, fundamentally, as a convenient way to reproduce a set of Dumper
 options that we've found ourselves using across large numbers of applications,
 primarily for debugging output.
 
+The principle guiding theme is "all the concision you can get while still
+having a useful dump and not doing anything cleverer than setting Data::Dumper
+options" - it's been pointed out to us that Data::Dump::Streamer can produce
+shorter output with less lines of code. We know. This is simpler and we've
+never seen it segfault. But for complex/weird structures, it generally rocks.
+You should use it as well, when Concise is underkill. We do.
+
 Why is deparsing on when the aim is concision? Because you often want to know
 what subroutine refs you have when debugging and because if you were planning
 to eval this back in you probably wanted to remove subrefs first and add them
 back in a custom way anyway. Note that this -does- force using the pure perl
 Dumper rather than the XS one, but I've never in my life seen Data::Dumper
 show up in a profile so "who cares?".
+
+=head1 BUT BUT BUT ...
+
+Yes, we know. Consider this module in the ::Tiny spirit and feel free to
+write a Data::Dumper::Concise::ButWithExtraTwiddlyBits if it makes you
+happy. Then tell us so we can add it to the see also section.
+
+=head1 SEE ALSO
+
+We use for some purposes, and dearly love, the following alternatives:
+
+L<Data::Dump> - prettiness oriented but not amazingly configurable
+
+L<Data::Dump::Streamer> - brilliant. beautiful. insane. extensive. excessive. try it.
+
+L<JSON::XS> - no, really. If it's just plain data, JSON is a great option.
 
 =head1 AUTHOR
 
