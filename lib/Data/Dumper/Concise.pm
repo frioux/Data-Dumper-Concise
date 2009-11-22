@@ -2,7 +2,7 @@ package Data::Dumper::Concise;
 
 use 5.006;
 
-$VERSION = '1.001';
+$VERSION = '1.002';
 
 require Exporter;
 require Data::Dumper;
@@ -11,16 +11,11 @@ BEGIN { @ISA = qw(Exporter) }
 
 @EXPORT = qw(Dumper);
 
-my $USAGE = 'Dumper() to get an object or Dumper($ref) to dump a reference please';
-
 sub Dumper {
-  die $USAGE if @_ > 1;
   my $dd = Data::Dumper->new([]);
   $dd->Terse(1)->Indent(1)->Useqq(1)->Deparse(1)->Quotekeys(0)->Sortkeys(1);
   return $dd unless @_;
-  my $ref = $_[0];
-  die $USAGE unless ref($ref);
-  return $dd->Values([ $ref ])->Dump;
+  return $dd->Values([ @_ ])->Dump;
 }
 
 =head1 NAME
@@ -88,8 +83,16 @@ instead of the default Data::Dumper output:
 =head1 DESCRIPTION
 
 This module always exports a single function, Dumper, which can be called
-with a single reference value to dump that value or with no arguments to
-return the Data::Dumper object it's created.
+with an array of values to dump those values or with no arguments to
+return the Data::Dumper object it's created. Note that this means that
+
+  Dumper @list
+
+will probably not do what you wanted when @list is empty. In this case use
+
+  Dumper \@list
+
+instead.
 
 It exists, fundamentally, as a convenient way to reproduce a set of Dumper
 options that we've found ourselves using across large numbers of applications,

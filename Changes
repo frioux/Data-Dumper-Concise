@@ -1,3 +1,7 @@
+1.002 Nov 22 2009
+  - open up non-ref and multiple arguments since I've not seen any other
+    viable use for the additional syntax
+
 1.001 Oct 5 2009
   - more explanation of purpose, limitations and alternatives in the POD
 
