@@ -2,6 +2,8 @@ package Devel::Dwarn;
 
 use Data::Dumper::Concise::Sugar ();
 
-sub import { goto &Data::Dumper::Concise::Sugar::import }
+sub import {
+  Data::Dumper::Concise::Sugar->export_to_level(1, @_);
+}
 
 1;
