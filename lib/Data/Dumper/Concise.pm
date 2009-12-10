@@ -2,7 +2,7 @@ package Data::Dumper::Concise;
 
 use 5.006;
 
-$VERSION = '1.002';
+$VERSION = '1.100';
 
 require Exporter;
 require Data::Dumper;
