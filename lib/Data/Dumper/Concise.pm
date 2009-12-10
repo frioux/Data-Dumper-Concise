@@ -118,6 +118,14 @@ Yes, we know. Consider this module in the ::Tiny spirit and feel free to
 write a Data::Dumper::Concise::ButWithExtraTwiddlyBits if it makes you
 happy. Then tell us so we can add it to the see also section.
 
+=head1 SUGARY SYNTAX
+
+This package also provides:
+
+L<Data::Dumper::Concise::Sugar> - provides Dwarn and DwarnS convenience functions
+
+L<Devel::Dwarn> - shorter form for Data::Dumper::Concise::Sugar
+
 =head1 SEE ALSO
 
 We use for some purposes, and dearly love, the following alternatives:
@@ -130,11 +138,11 @@ L<JSON::XS> - no, really. If it's just plain data, JSON is a great option.
 
 =head1 AUTHOR
 
-Matt S. Trout <mst@shadowcat.co.uk>
+mst - Matt S. Trout <mst@shadowcat.co.uk>
 
 =head1 CONTRIBUTORS
 
-None required yet. Maybe this module is perfect (hahahahaha ...).
+frew - Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 =head1 COPYRIGHT
 

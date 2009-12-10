@@ -1,3 +1,7 @@
+  - add Data::Dumper::Concise::Sugar containing Dwarn and DwarnS
+    helper functions
+  - add Devel::Dwarn as a more concise alias for ::Sugar
+
 1.002 Nov 22 2009
   - open up non-ref and multiple arguments since I've not seen any other
     viable use for the additional syntax
