@@ -60,6 +60,10 @@ its docs for ways to make it do something else.
 
   sub DwarnS ($) { warn Data::Dumper::Concise::Dumper $_[0]; $_[0] }
 
-=cut 
+=head1 SEE ALSO
+
+You probably want L<Devel::Dwarn>, it's the shorter name for this module.
+
+=cut
 
 1;
