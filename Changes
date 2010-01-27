@@ -1,3 +1,5 @@
+  - make sure Devel::Dwarn::Dwarn and Devel::Dwarn::DwarnS work
+
 1.100 Dec 10 2009
   - add Data::Dumper::Concise::Sugar containing Dwarn and DwarnS
     helper functions
