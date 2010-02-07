@@ -45,6 +45,17 @@ is equivalent to:
   warn Dumper($return);
   return $return;
 
+Another trick that is extremely useful when doing method chaining is the
+following:
+
+  my $foo = Bar->new;
+  $foo->bar->baz->Data::Dumper::Concise::Sugar::DwarnS->biff;
+
+which is the same as:
+
+  my $foo = Bar->new;
+  (DwarnS $foo->bar->baz)->biff;
+
 =head1 DESCRIPTION
 
   use Data::Dumper::Concise::Sugar;

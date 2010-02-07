@@ -38,6 +38,17 @@ is equivalent to:
   warn Dumper($return);
   return $return;
 
+Another trick that is extremely useful when doing method chaining is the
+following:
+
+  my $foo = Bar->new;
+  $foo->bar->baz->Devel::Dwarn::DwarnS->biff;
+
+which is the same as:
+
+  my $foo = Bar->new;
+  (DwarnS $foo->bar->baz)->biff;
+
 =head1 SEE ALSO
 
 This module is really just a shortcut for L<Data::Dumper::Concise::Sugar>, check
