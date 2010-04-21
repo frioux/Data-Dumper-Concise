@@ -1,3 +1,7 @@
+  - add DwarnL
+  - make Dwarn contextual
+  - document ::Dwarn idiom
+
 1.200 Feb 13 2010
   - make sure Devel::Dwarn::Dwarn and Devel::Dwarn::DwarnS work
 
