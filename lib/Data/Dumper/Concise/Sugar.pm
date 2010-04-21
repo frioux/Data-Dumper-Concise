@@ -7,9 +7,11 @@ use Data::Dumper::Concise ();
 
 BEGIN { @ISA = qw(Exporter) }
 
-@EXPORT = qw(Dwarn DwarnS);
+@EXPORT = qw(Dwarn DwarnS DwarnL);
 
-sub Dwarn { warn Data::Dumper::Concise::Dumper @_; @_ }
+sub Dwarn { return DwarnL(@_) if wantarray; DwarnS($_[0]) }
+
+sub DwarnL { warn Data::Dumper::Concise::Dumper @_; @_ }
 
 sub DwarnS ($) { warn Data::Dumper::Concise::Dumper $_[0]; $_[0] }
 
