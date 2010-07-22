@@ -4,16 +4,22 @@ use 5.006;
 
 use Exporter ();
 use Data::Dumper::Concise ();
+use Devel::ArgNames;
 
 BEGIN { @ISA = qw(Exporter) }
 
-@EXPORT = qw(Dwarn DwarnS DwarnL);
+@EXPORT = qw(Dwarn DwarnS DwarnL DwarnN);
 
 sub Dwarn { return DwarnL(@_) if wantarray; DwarnS($_[0]) }
 
 sub DwarnL { warn Data::Dumper::Concise::Dumper @_; @_ }
 
 sub DwarnS ($) { warn Data::Dumper::Concise::Dumper $_[0]; $_[0] }
+
+sub DwarnN ($) {
+   my $x = arg_names();
+   warn(($x?$x:'(anon)') . ' => ' . Data::Dumper::Concise::Dumper $_[0]); $_[0]
+}
 
 =head1 NAME
 
