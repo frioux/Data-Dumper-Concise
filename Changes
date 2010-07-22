@@ -1,3 +1,4 @@
+  - remove Dumper() returning object
   - add DwarnL
   - make Dwarn contextual
   - document ::Dwarn idiom

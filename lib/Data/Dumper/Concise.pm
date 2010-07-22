@@ -14,7 +14,6 @@ BEGIN { @ISA = qw(Exporter) }
 sub Dumper {
   my $dd = Data::Dumper->new([]);
   $dd->Terse(1)->Indent(1)->Useqq(1)->Deparse(1)->Quotekeys(0)->Sortkeys(1);
-  return $dd unless @_;
   return $dd->Values([ @_ ])->Dump;
 }
 
@@ -40,20 +39,6 @@ is equivalent to:
     local $Data::Dumper::Sortkeys = 1;
     warn Dumper($var);
   }
-
-whereas
-
-  my $dd = Dumper;
-
-is equivalent to:
-
-  my $dd = Data::Dumper->new([])
-                       ->Terse(1)
-                       ->Indent(1)
-                       ->Useqq(1)
-                       ->Deparse(1)
-                       ->Quotekeys(0)
-                       ->Sortkeys(1);
 
 So for the structure:
 
@@ -83,16 +68,7 @@ instead of the default Data::Dumper output:
 =head1 DESCRIPTION
 
 This module always exports a single function, Dumper, which can be called
-with an array of values to dump those values or with no arguments to
-return the Data::Dumper object it's created. Note that this means that
-
-  Dumper @list
-
-will probably not do what you wanted when @list is empty. In this case use
-
-  Dumper \@list
-
-instead.
+with an array of values to dump those values.
 
 It exists, fundamentally, as a convenient way to reproduce a set of Dumper
 options that we've found ourselves using across large numbers of applications,
@@ -146,7 +122,7 @@ frew - Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2009 the Data::Dumper::Concise L</AUTHOR> and L</CONTRIBUTORS>
+Copyright (c) 2010 the Data::Dumper::Concise L</AUTHOR> and L</CONTRIBUTORS>
 as listed above.
 
 =head1 LICENSE
