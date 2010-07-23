@@ -2,7 +2,7 @@ package Data::Dumper::Concise;
 
 use 5.006;
 
-$VERSION = '2.000';
+$VERSION = '2.001';
 
 require Exporter;
 require Data::Dumper;
@@ -58,8 +58,8 @@ Data::Dumper::Concise will give you:
 instead of the default Data::Dumper output:
 
   $VAR1 = {
-  	'quux' => sub { "DUMMY" },
-  	'foo' => 'bar
+   'quux' => sub { "DUMMY" },
+   'foo' => 'bar
   baz'
   };
 

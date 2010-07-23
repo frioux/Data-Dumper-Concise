@@ -73,12 +73,26 @@ is equivalent to:
   warn Dumper(@return);
   return @return;
 
+If you want to label your output, try DwarnN
+
+  use Data::Dumper::Concise::Sugar;
+
+  return DwarnN $foo
+
+is equivalent to:
+
+  use Data::Dumper::Concise;
+
+  my @return = some_call(...);
+  warn '$foo => ' . Dumper(@return);
+  return @return;
+
 =head1 DESCRIPTION
 
   use Data::Dumper::Concise::Sugar;
 
-will import Dwarn, DwarnL, and DwarnS into your namespace. Using L<Exporter>, so see
-its docs for ways to make it do something else.
+will import Dwarn, DwarnL, DwarnN, and DwarnS into your namespace. Using
+L<Exporter>, so see its docs for ways to make it do something else.
 
 =head2 Dwarn
 
@@ -91,6 +105,10 @@ its docs for ways to make it do something else.
 =head2 DwarnS
 
   sub DwarnS ($) { warn Data::Dumper::Concise::Dumper $_[0]; $_[0] }
+
+=head2 DwarnN
+
+  sub DwarnN { warn '$argname => ' . Data::Dumper::Concise::Dumper $_[0]; $_[0] }
 
 =head1 TIPS AND TRICKS
 

@@ -11,7 +11,8 @@ sub import {
 Devel::Dwarn - return Dwarn @return_value
 
 =head1 SYNOPSIS
-  use Data::Dumper::Concise::Sugar;
+
+  use Devel::Dwarn;
 
   return Dwarn some_call(...)
 
@@ -31,7 +32,7 @@ is equivalent to:
 
 but shorter. If you need to force scalar context on the value,
 
-  use Data::Dumper::Concise::Sugar;
+  use Devel::Dwarn;
 
   return DwarnS some_call(...)
 
@@ -45,7 +46,7 @@ is equivalent to:
 
 If you need to force list context on the value,
 
-  use Data::Dumper::Concise::Sugar;
+  use Devel::Dwarn;
 
   return DwarnL some_call(...)
 
@@ -55,6 +56,20 @@ is equivalent to:
 
   my @return = some_call(...);
   warn Dumper(@return);
+  return @return;
+
+If you want to label your output, try DwarnN
+
+  use Devel::Dwarn;
+
+  return DwarnN $foo
+
+is equivalent to:
+
+  use Data::Dumper::Concise;
+
+  my @return = some_call(...);
+  warn '$foo => ' . Dumper(@return);
   return @return;
 
 =head1 TIPS AND TRICKS
