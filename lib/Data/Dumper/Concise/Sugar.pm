@@ -8,9 +8,11 @@ use Devel::ArgNames;
 
 BEGIN { @ISA = qw(Exporter) }
 
-@EXPORT = qw(Dwarn DwarnS DwarnL DwarnN);
+@EXPORT = qw($Dwarn Dwarn DwarnS DwarnL DwarnN);
 
 sub Dwarn { return DwarnL(@_) if wantarray; DwarnS($_[0]) }
+
+our $Dwarn = \&Dwarn;
 
 sub DwarnL { warn Data::Dumper::Concise::Dumper @_; @_ }
 
@@ -87,16 +89,30 @@ is equivalent to:
   warn '$foo => ' . Dumper(@return);
   return @return;
 
+If you want to output a reference returned by a method easily, try $Dwarn
+
+ $foo->bar->{baz}->$Dwarn
+
+is equivalent to:
+
+  my $return = $foo->bar->{baz};
+  warn Dumper($return);
+  return $return;
+
 =head1 DESCRIPTION
 
   use Data::Dumper::Concise::Sugar;
 
-will import Dwarn, DwarnL, DwarnN, and DwarnS into your namespace. Using
+will import Dwarn, $Dwarn, DwarnL, DwarnN, and DwarnS into your namespace. Using
 L<Exporter>, so see its docs for ways to make it do something else.
 
 =head2 Dwarn
 
   sub Dwarn { return DwarnL(@_) if wantarray; DwarnS($_[0]) }
+
+=head2 $Dwarn
+
+  $Dwarn = \&Dwarn
 
 =head2 DwarnL
 

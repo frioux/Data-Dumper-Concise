@@ -8,3 +8,4 @@ use Test::More qw(no_plan);
 can_ok __PACKAGE__, qw{Dwarn DwarnS DwarnL DwarnN};
 
 can_ok 'Devel::Dwarn', qw{Dwarn DwarnS DwarnL DwarnN};
+ok($Dwarn, 'Coderef gets exported too');

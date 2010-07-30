@@ -72,6 +72,16 @@ is equivalent to:
   warn '$foo => ' . Dumper(@return);
   return @return;
 
+If you want to output a reference returned by a method easily, try $Dwarn
+
+ $foo->bar->{baz}->$Dwarn
+
+is equivalent to:
+
+  my $return = $foo->bar->{baz};
+  warn Dumper($return);
+  return $return;
+
 =head1 TIPS AND TRICKS
 
 =head2 global usage

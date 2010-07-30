@@ -38,6 +38,13 @@ DWARN: {
    is $bar, 'robot', 'Dwarn passes scalars through correctly';
 }
 
+DWARN_CODEREF: {
+   my $foo = ['warn', 'friend']->$Dwarn;
+   is $warned_string,qq{[\n  "warn",\n  "friend"\n]\n}, 'Dwarn warns lists';
+
+   ok eq_array($foo, ['warn','friend']), 'Dwarn passes lists through correctly';
+}
+
 DWARNN: {
    my $x = [1];
    my $foo = DwarnN $x;
