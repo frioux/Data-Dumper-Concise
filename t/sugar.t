@@ -46,13 +46,16 @@ DWARN_CODEREF: {
 }
 
 DWARNN: {
-   my $x = [1];
-   my $foo = DwarnN $x;
-   is $warned_string, qq{\$x => [\n  1\n]\n}, 'DwarnN warns';
+   my $loaded = eval { require Devel::ArgNames; 1 };
+   if ($loaded) {
+      my $x = [1];
+      my $foo = DwarnN $x;
+      is $warned_string, qq{\$x => [\n  1\n]\n}, 'DwarnN warns';
 
-   ok eq_array($foo, [1]), 'DwarnN passes through correctly';
+      ok eq_array($foo, [1]), 'DwarnN passes through correctly';
 
-   DwarnN [1];
-   is $warned_string, qq{(anon) => [\n  1\n]\n}, 'DwarnN warns';
+      DwarnN [1];
+      is $warned_string, qq{(anon) => [\n  1\n]\n}, 'DwarnN warns';
+   }
 }
 

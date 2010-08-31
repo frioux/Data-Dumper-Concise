@@ -1,3 +1,6 @@
+2.012 Aug 31 2010
+  - Make DwarnN test still work if Devel::ArgNames isn't installed
+
 2.011 Aug 30 2010
   - add $DwarnN export
   - make Devel::ArgNames an optional dep
