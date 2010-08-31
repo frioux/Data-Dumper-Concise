@@ -4,22 +4,23 @@ use 5.006;
 
 use Exporter ();
 use Data::Dumper::Concise ();
-use Devel::ArgNames;
 
 BEGIN { @ISA = qw(Exporter) }
 
-@EXPORT = qw($Dwarn Dwarn DwarnS DwarnL DwarnN);
+@EXPORT = qw($Dwarn $DwarnN Dwarn DwarnS DwarnL DwarnN);
 
 sub Dwarn { return DwarnL(@_) if wantarray; DwarnS($_[0]) }
 
 our $Dwarn = \&Dwarn;
+our $DwarnN = \&DwarnN;
 
 sub DwarnL { warn Data::Dumper::Concise::Dumper @_; @_ }
 
 sub DwarnS ($) { warn Data::Dumper::Concise::Dumper $_[0]; $_[0] }
 
 sub DwarnN ($) {
-   my $x = arg_names();
+   require Devel::ArgNames;
+   my $x = Devel::ArgNames::arg_names();
    warn(($x?$x:'(anon)') . ' => ' . Data::Dumper::Concise::Dumper $_[0]); $_[0]
 }
 
@@ -114,6 +115,10 @@ L<Exporter>, so see its docs for ways to make it do something else.
 
   $Dwarn = \&Dwarn
 
+=head2 $DwarnN
+
+  $DwarnN = \&DwarnN
+
 =head2 DwarnL
 
   sub Dwarn { warn Data::Dumper::Concise::Dumper @_; @_ }
@@ -125,6 +130,8 @@ L<Exporter>, so see its docs for ways to make it do something else.
 =head2 DwarnN
 
   sub DwarnN { warn '$argname => ' . Data::Dumper::Concise::Dumper $_[0]; $_[0] }
+
+B<Note>: this requires L<Devel::ArgNames> to be installed.
 
 =head1 TIPS AND TRICKS
 

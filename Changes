@@ -1,3 +1,7 @@
+2.011 Aug 30 2010
+  - add $DwarnN export
+  - make Devel::ArgNames an optional dep
+
 2.010 Jul 29 2010
   - add $Dwarn export
 
