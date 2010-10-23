@@ -82,6 +82,12 @@ is equivalent to:
   warn Dumper($return);
   return $return;
 
+If you want to immediately die after outputting the data structure, every
+Dwarn subroutine has a paired Ddie version, so just replace the warn with die.
+For example:
+
+ DdieL 'foo', { bar => 'baz' };
+
 =head1 TIPS AND TRICKS
 
 =head2 global usage

@@ -1,4 +1,5 @@
   - create DwarnF for formatting Dumper'd output
+  - Create Ddie for die'ing output
 
 2.012 Aug 31 2010
   - Make DwarnN test still work if Devel::ArgNames isn't installed

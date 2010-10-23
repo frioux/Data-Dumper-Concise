@@ -66,3 +66,10 @@ DWARNN: {
    }
 }
 
+DDIE: {
+   eval {
+      DdieS [ 'k', 'bar' ];
+   };
+   is $@, qq{[\n  "k",\n  "bar"\n]\n}, 'DwarnD dies output correctly';
+}
+

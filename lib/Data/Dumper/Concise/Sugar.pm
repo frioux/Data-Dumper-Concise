@@ -7,7 +7,10 @@ use Data::Dumper::Concise ();
 
 BEGIN { @ISA = qw(Exporter) }
 
-@EXPORT = qw($Dwarn $DwarnN Dwarn DwarnS DwarnL DwarnN DwarnF);
+@EXPORT = qw(
+   $Dwarn $DwarnN Dwarn DwarnS DwarnL DwarnN
+   $Ddie $DdieN Ddie DdieS DdieL DdieN DdieD
+);
 
 sub Dwarn { return DwarnL(@_) if wantarray; DwarnS($_[0]) }
 
@@ -25,6 +28,21 @@ sub DwarnN ($) {
 }
 
 sub DwarnF (&@) { my $c = shift; warn &Data::Dumper::Concise::DumperF($c, @_); @_ }
+
+sub Ddie { DdieL(@_) if wantarray; DdieS($_[0]) }
+
+our $Ddie = \&Ddie;
+our $DdieN = \&DdieN;
+
+sub DdieL { die Data::Dumper::Concise::Dumper @_ }
+
+sub DdieS ($) { die Data::Dumper::Concise::Dumper $_[0] }
+
+sub DdieN ($) {
+   require Devel::ArgNames;
+   my $x = Devel::ArgNames::arg_names();
+   die(($x?$x:'(anon)') . ' => ' . Data::Dumper::Concise::Dumper $_[0]);
+}
 
 =head1 NAME
 
@@ -111,6 +129,12 @@ is equivalent to:
   my @return = ($awesome, $cheesy);
   warn DumperF { "awesome: $_[0] not awesome: $_[1]" } $awesome, $cheesy;
   return @return;
+
+If you want to immediately die after outputting the data structure, every
+Dwarn subroutine has a paired Ddie version, so just replace the warn with die.
+For example:
+
+ DdieL 'foo', { bar => 'baz' };
 
 =head1 DESCRIPTION
 
