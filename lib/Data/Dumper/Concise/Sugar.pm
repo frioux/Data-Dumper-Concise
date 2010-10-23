@@ -8,7 +8,7 @@ use Data::Dumper::Concise ();
 BEGIN { @ISA = qw(Exporter) }
 
 @EXPORT = qw(
-   $Dwarn $DwarnN Dwarn DwarnS DwarnL DwarnN
+   $Dwarn $DwarnN Dwarn DwarnS DwarnL DwarnN DwarnF
    $Ddie $DdieN Ddie DdieS DdieL DdieN DdieD
 );
 
