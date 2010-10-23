@@ -7,7 +7,7 @@ use Data::Dumper::Concise ();
 
 BEGIN { @ISA = qw(Exporter) }
 
-@EXPORT = qw($Dwarn $DwarnN Dwarn DwarnS DwarnL DwarnN);
+@EXPORT = qw($Dwarn $DwarnN Dwarn DwarnS DwarnL DwarnN DwarnF);
 
 sub Dwarn { return DwarnL(@_) if wantarray; DwarnS($_[0]) }
 
@@ -23,6 +23,8 @@ sub DwarnN ($) {
    my $x = Devel::ArgNames::arg_names();
    warn(($x?$x:'(anon)') . ' => ' . Data::Dumper::Concise::Dumper $_[0]); $_[0]
 }
+
+sub DwarnF (&@) { my $c = shift; warn &Data::Dumper::Concise::DumperF($c, @_); @_ }
 
 =head1 NAME
 
@@ -100,6 +102,16 @@ is equivalent to:
   warn Dumper($return);
   return $return;
 
+If you want to format the output of your data structures, try DwarnF
+
+ my ($a, $c) = DwarnF { "awesome: $_[0] not awesome: $_[1]" } $awesome, $cheesy;
+
+is equivalent to:
+
+  my @return = ($awesome, $cheesy);
+  warn DumperF { "awesome: $_[0] not awesome: $_[1]" } $awesome, $cheesy;
+  return @return;
+
 =head1 DESCRIPTION
 
   use Data::Dumper::Concise::Sugar;
@@ -132,6 +144,10 @@ L<Exporter>, so see its docs for ways to make it do something else.
   sub DwarnN { warn '$argname => ' . Data::Dumper::Concise::Dumper $_[0]; $_[0] }
 
 B<Note>: this requires L<Devel::ArgNames> to be installed.
+
+=head2 DwarnF
+
+  sub DwarnF (&@) { my $c = shift; warn &Data::Dumper::Concise::DumperF($c, @_); @_ }
 
 =head1 TIPS AND TRICKS
 

@@ -33,3 +33,7 @@ foreach my $to_dump (
 
   is($example, Dumper(@$to_dump), 'Subroutine call usage equivalent');
 }
+
+my $out = DumperF { "arr: $_[0] str: $_[1]" } [qw(wut HALP)], "gnarl";
+
+is($out, qq{arr: [\n  "wut",\n  "HALP"\n]\n str: "gnarl"\n}, 'DumperF works!');
