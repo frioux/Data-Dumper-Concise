@@ -9,13 +9,14 @@ require Data::Dumper;
 
 BEGIN { @ISA = qw(Exporter) }
 
-@EXPORT = qw(Dumper DumperF);
+@EXPORT = qw(Dumper DumperF DumperObject);
 
-sub Dumper {
+sub DumperObject {
   my $dd = Data::Dumper->new([]);
   $dd->Terse(1)->Indent(1)->Useqq(1)->Deparse(1)->Quotekeys(0)->Sortkeys(1);
-  return $dd->Values([ @_ ])->Dump;
 }
+
+sub Dumper { DumperObject->Values([ @_ ])->Dump }
 
 sub DumperF (&@) {
   my $code = shift;
@@ -69,6 +70,8 @@ instead of the default Data::Dumper output:
   };
 
 (note the tab indentation, oh joy ...)
+
+If you need to get the underlying L<Dumper> object just call C<DumperObject>.
 
 Also try out C<DumperF> which takes a C<CodeRef> as the first argument to
 format the output.  For example:
