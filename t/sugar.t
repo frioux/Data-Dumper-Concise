@@ -34,7 +34,7 @@ DWARN: {
    ok eq_array(\@foo, ['warn','friend']), 'Dwarn passes lists through correctly';
 
    my $bar = Dwarn 'robot',2,3;
-   is $warned_string,qq{"robot"\n}, 'Dwarn warns scalars correctly';
+   is $warned_string,qq{"robot"\n2\n3\n}, 'Dwarn warns scalars correctly';
    is $bar, 'robot', 'Dwarn passes scalars through correctly';
 }
 

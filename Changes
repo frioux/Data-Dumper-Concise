@@ -1,3 +1,7 @@
+2.021 Dec 31 2013
+  - Make Dwarn output all arguments even in scalar context
+     (retun val is still the same though)
+
 2.020 Jan 20 2011
   - Add DumperObject for getting at the underlying obj
   - create DwarnF for formatting Dumper'd output

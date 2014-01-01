@@ -12,7 +12,7 @@ BEGIN { @ISA = qw(Exporter) }
    $Ddie $DdieN Ddie DdieS DdieL DdieN DdieD
 );
 
-sub Dwarn { return DwarnL(@_) if wantarray; DwarnS($_[0]) }
+sub Dwarn { DwarnL(@_); return wantarray ? @_ : $_[0] }
 
 our $Dwarn = \&Dwarn;
 our $DwarnN = \&DwarnN;
@@ -29,7 +29,7 @@ sub DwarnN ($) {
 
 sub DwarnF (&@) { my $c = shift; warn &Data::Dumper::Concise::DumperF($c, @_); @_ }
 
-sub Ddie { DdieL(@_) if wantarray; DdieS($_[0]) }
+sub Ddie { DdieL(@_); return wantarray ? @_ : $_[0] }
 
 our $Ddie = \&Ddie;
 our $DdieN = \&DdieN;
