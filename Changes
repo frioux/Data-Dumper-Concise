@@ -1,3 +1,8 @@
+Revision history for Data-Dumper-Concise
+
+2.022 Mar 21 2014
+  - Fix repo metadata
+
 2.021 Dec 31 2013
   - Make Dwarn output all arguments even in scalar context
      (retun val is still the same though)
